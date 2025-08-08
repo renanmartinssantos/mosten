@@ -134,6 +134,14 @@ export default function HeroCarousel() {
               data-oid="fva:eyu"
             >
               <div className="container mx-auto" data-oid="qk9miew">
+                <div className="mb-2" data-oid="vx5kah6">
+                  <span
+                    className="text-yellow-400 text-sm font-medium uppercase tracking-wide"
+                    data-oid="lzy8ey:"
+                  >
+                    ⭐ Destaques da Semana
+                  </span>
+                </div>
                 <h2
                   className="text-4xl font-bold mb-2 drop-shadow-lg"
                   data-oid="38jvy60"

@@ -114,7 +114,7 @@ export default function HeroCarousel() {
               src={filme.imagemUrl}
               alt={filme.titulo}
               fill
-              className="object-cover object-center"
+              className="object-cover object-top"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
                 target.src = "/placeholder-movie.png";

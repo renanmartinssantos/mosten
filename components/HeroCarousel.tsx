@@ -114,7 +114,7 @@ export default function HeroCarousel() {
               src={filme.imagemUrl}
               alt={filme.titulo}
               fill
-              className="object-cover"
+              className="object-cover object-center"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
                 target.src = "/placeholder-movie.png";
@@ -124,7 +124,7 @@ export default function HeroCarousel() {
 
             {/* Overlay */}
             <div
-              className="absolute inset-0 bg-black bg-opacity-40"
+              className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"
               data-oid="roaivn_"
             />
 

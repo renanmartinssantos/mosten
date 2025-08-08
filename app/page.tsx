@@ -1,32 +1,25 @@
 import CadastroFilme from "@/components/CadastroFilme";
-import ListaFilmes from "@/components/ListaFilmes";
+import HeroCarousel from "@/components/HeroCarousel";
+import StatsPanel from "@/components/StatsPanel";
+import MovieGrid from "@/components/MovieGrid";
+import { useUser } from "@/contexts/UserContext";
 
 export default function Home() {
   return (
-    <div className="space-y-8" data-oid="._xc.0m">
-      <div className="text-center" data-oid="59ig239">
-        <h1
-          className="text-4xl font-bold text-gray-900 mb-2"
-          data-oid="w2quhda"
-        >
-          🎬 Sistema de Votação de Filmes
-        </h1>
-        <p className="text-lg text-gray-600" data-oid=":2mxsb6">
-          Vote nos seus filmes e séries favoritos!
-        </p>
+    <div className="min-h-screen bg-gray-50" data-oid="acg_vrc">
+      {/* Hero Carousel */}
+      <HeroCarousel data-oid="w6vbc1x" />
+
+      {/* Stats Panel */}
+      <StatsPanel data-oid="bc9xxx7" />
+
+      {/* Admin Section - Only show when in admin mode */}
+      <div className="container mx-auto px-4 py-8" data-oid="425:6r_">
+        <CadastroFilme data-oid="v:u505l" />
       </div>
 
-      <CadastroFilme data-oid="t1ar8pc" />
-
-      <div data-oid="0s4saa9">
-        <h2
-          className="text-2xl font-bold text-gray-900 mb-6"
-          data-oid="_2c8ic:"
-        >
-          📽️ Filmes e Séries
-        </h2>
-        <ListaFilmes data-oid="_s66jwz" />
-      </div>
+      {/* Movie Grid */}
+      <MovieGrid data-oid="y4qbuos" />
     </div>
   );
 }

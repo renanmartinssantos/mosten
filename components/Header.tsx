@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { handleLogoutClient } from "@/app/actions";
 import AuthModal from "./AuthModal";
 import AdminSwitch from "./AdminSwitch";
+import SearchBar from "./SearchBar";
 import { useUser } from "@/contexts/UserContext";
 
 export default function Header() {
@@ -18,7 +19,6 @@ export default function Header() {
 
   const handleAuthSuccess = async () => {
     setIsAuthModalOpen(false);
-    // Atualizar o estado do usuário
     await refreshUser();
   };
 
@@ -26,12 +26,9 @@ export default function Header() {
     try {
       const result = await handleLogoutClient();
       if (result.success) {
-        // Atualizar o contexto do usuário
         await refreshUser();
-        // Redirecionar para a página inicial forçando um refresh
         router.push("/");
         router.refresh();
-        // Como fallback, usar window.location.reload após um delay curto
         setTimeout(() => {
           window.location.reload();
         }, 100);
@@ -43,50 +40,74 @@ export default function Header() {
 
   return (
     <>
-      <header className="bg-white shadow-sm border-b" data-oid="7lv5..f">
-        <div className="container mx-auto px-4 py-4" data-oid="6.vs2th">
-          <div className="flex items-center justify-between" data-oid="3-b2.db">
-            <div className="flex items-center space-x-4" data-oid="l13_kh.">
-              <h1
-                className="text-2xl font-bold text-primary-600"
-                data-oid="em_qxc9"
-              >
-                🎬 Mosten
+      {/* Fixed Header */}
+      <header
+        className="fixed top-0 left-0 right-0 z-50 bg-gray-900 shadow-lg"
+        data-oid="78p.c8:"
+      >
+        <div className="container mx-auto px-4 py-3" data-oid="ttznkz.">
+          <div className="flex items-center justify-between" data-oid="a20k1d6">
+            {/* Logo */}
+            <div className="flex items-center" data-oid="vqi7k7j">
+              <h1 className="text-2xl font-bold text-white" data-oid="yb02-ul">
+                🎬{" "}
+                <span className="text-yellow-400" data-oid="9c..z6h">
+                  Mosten
+                </span>
               </h1>
-              <span className="text-gray-500 text-sm" data-oid="-0m_4s3">
-                Sistema de Votação de Filmes
-              </span>
             </div>
 
-            <div className="flex items-center space-x-4" data-oid="zdwoijt">
-              <AdminSwitch data-oid="kcd:364" />
+            {/* Search Bar - Center */}
+            <div className="flex-1 max-w-2xl mx-8" data-oid="2:9yisp">
+              <SearchBar data-oid="hkkb_1q" />
+            </div>
+
+            {/* User Section - Right */}
+            <div className="flex items-center space-x-4" data-oid="l8__h3q">
+              <AdminSwitch data-oid="uoob3.b" />
 
               {isLoading ? (
                 <div
-                  className="w-24 h-8 bg-gray-200 animate-pulse rounded"
-                  data-oid="psw9x4m"
+                  className="w-10 h-10 bg-gray-700 animate-pulse rounded-full"
+                  data-oid="es1b2uy"
                 ></div>
               ) : user ? (
-                <div className="flex items-center space-x-3" data-oid="2dhager">
-                  <span className="text-sm text-gray-700" data-oid="yfl91mm">
-                    Olá,{" "}
-                    <span className="font-medium" data-oid="7skwpi:">
+                <div className="flex items-center space-x-3" data-oid="4t_dvbl">
+                  <div
+                    className="flex items-center space-x-2"
+                    data-oid="d4awq-w"
+                  >
+                    <div
+                      className="w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center"
+                      data-oid="7e_bmhc"
+                    >
+                      <span
+                        className="text-white text-sm font-bold"
+                        data-oid="m976q1m"
+                      >
+                        {user.nome.charAt(0).toUpperCase()}
+                      </span>
+                    </div>
+                    <span
+                      className="text-white text-sm font-medium hidden md:block"
+                      data-oid="w_9v4mk"
+                    >
                       {user.nome}
                     </span>
-                  </span>
+                  </div>
                   <button
                     onClick={handleLogoutClick}
-                    className="btn btn-secondary text-sm"
-                    data-oid="x5k4680"
+                    className="text-gray-300 hover:text-white text-sm transition-colors"
+                    data-oid="ow1euuh"
                   >
-                    Logout
+                    Sair
                   </button>
                 </div>
               ) : (
                 <button
                   onClick={handleAuth}
-                  className="btn btn-primary"
-                  data-oid="tphd.dg"
+                  className="bg-yellow-500 hover:bg-yellow-600 text-gray-900 px-4 py-2 rounded-lg font-medium transition-colors"
+                  data-oid="reyhcxu"
                 >
                   Entrar
                 </button>
@@ -96,11 +117,14 @@ export default function Header() {
         </div>
       </header>
 
+      {/* Spacer for fixed header */}
+      <div className="h-16" data-oid="arp2rl-"></div>
+
       {isAuthModalOpen && (
         <AuthModal
           onClose={() => setIsAuthModalOpen(false)}
           onSuccess={handleAuthSuccess}
-          data-oid="8cx3qd."
+          data-oid="4j4p9ph"
         />
       )}
     </>

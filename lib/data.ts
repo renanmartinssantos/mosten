@@ -12,7 +12,8 @@ export async function getFilmesComVotos(): Promise<FilmeComVotos[]> {
         f.id, 
         f.titulo, 
         f.descricao, 
-        f.imagem_url as "imagemUrl", 
+        f.imagem_url as "imagemUrl",
+        f.banner_top_url as "bannerTopUrl", 
         g.nome AS genero,
         COALESCE(COUNT(v.id) FILTER (WHERE v.tipo_voto = 1), 0) AS gostei,
         COALESCE(COUNT(v.id) FILTER (WHERE v.tipo_voto = -1), 0) AS "naoGostei"
@@ -52,9 +53,9 @@ export async function criarFilme(filme: NovoFilme): Promise<Filme> {
   try {
     console.log('🎬 Criando novo filme:', filme.titulo);
     const [novoFilme] = await sql<Filme[]>`
-      INSERT INTO "Filmes" (titulo, descricao, imagem_url, genero_id)
-      VALUES (${filme.titulo}, ${filme.descricao || null}, ${filme.imagemUrl}, ${filme.generoId})
-      RETURNING id, titulo, descricao, imagem_url as "imagemUrl", data_cadastro as "dataCadastro", genero_id as "generoId";
+      INSERT INTO "Filmes" (titulo, descricao, imagem_url, banner_top_url, genero_id)
+      VALUES (${filme.titulo}, ${filme.descricao || null}, ${filme.imagemUrl}, ${filme.bannerTopUrl || null}, ${filme.generoId})
+      RETURNING id, titulo, descricao, imagem_url as "imagemUrl", banner_top_url as "bannerTopUrl", data_cadastro as "dataCadastro", genero_id as "generoId";
     `;
     console.log('✅ Filme criado com ID:', novoFilme.id);
     return novoFilme;

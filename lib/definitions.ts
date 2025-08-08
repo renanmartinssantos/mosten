@@ -16,6 +16,7 @@ export type Filme = {
   titulo: string;
   descricao: string | null;
   imagemUrl: string;
+  bannerTopUrl: string | null;
   dataCadastro: Date;
   generoId: number;
 };
@@ -33,6 +34,7 @@ export type FilmeComVotos = {
   titulo: string;
   descricao: string | null;
   imagemUrl: string;
+  bannerTopUrl: string | null;
   genero: string;
   gostei: string;
   naoGostei: string;
@@ -53,6 +55,7 @@ export type NovoFilme = {
   titulo: string;
   descricao?: string;
   imagemUrl: string;
+  bannerTopUrl?: string;
   generoId: number;
 };
 

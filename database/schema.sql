@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS "Filmes" (
     titulo VARCHAR(255) NOT NULL,
     descricao TEXT,
     imagem_url VARCHAR(255) NOT NULL,
+    banner_top_url VARCHAR(255),
     data_cadastro TIMESTAMP WITH TIME ZONE DEFAULT now(),
     genero_id INTEGER NOT NULL,
     FOREIGN KEY (genero_id) REFERENCES "Generos"(id) ON DELETE RESTRICT

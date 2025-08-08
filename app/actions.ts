@@ -47,6 +47,7 @@ export async function handleCadastrarFilme(formData: FormData) {
     const titulo = formData.get('titulo') as string;
     const descricao = formData.get('descricao') as string;
     const imagemUrl = formData.get('imagemUrl') as string;
+    const bannerTopUrl = formData.get('bannerTopUrl') as string;
     const generoId = parseInt(formData.get('generoId') as string);
 
     if (!titulo || !imagemUrl || !generoId) {
@@ -57,6 +58,7 @@ export async function handleCadastrarFilme(formData: FormData) {
       titulo,
       descricao: descricao || undefined,
       imagemUrl,
+      bannerTopUrl: bannerTopUrl || undefined,
       generoId,
     };
 

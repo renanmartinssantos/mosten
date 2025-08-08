@@ -18,7 +18,7 @@ export default function RootLayout({
         <UserProvider data-oid="cowwq6b">
           <AdminProvider data-oid="ekp.f4r">
             <Header data-oid="yggmtm:" />
-            <main className="container mx-auto px-4 py-8" data-oid="ljb9s_f">
+            <main className="min-h-screen" data-oid="ljb9s_f">
               {children}
             </main>
           </AdminProvider>

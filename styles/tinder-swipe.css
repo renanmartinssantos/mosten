@@ -1,0 +1,157 @@
+/* Estilos personalizados para o Tinder Swipe */
+.swiper {
+  overflow: visible !important;
+}
+
+.swiper-wrapper {
+  perspective: 1200px;
+}
+
+.swiper-slide {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.swiper-slide-active {
+  z-index: 10;
+  transform: scale(1) translateY(0px);
+  opacity: 1;
+}
+
+.swiper-slide-next {
+  z-index: 9;
+  transform: scale(0.95) translateY(10px);
+  opacity: 0.9;
+}
+
+.swiper-slide:not(.swiper-slide-active):not(.swiper-slide-next) {
+  z-index: 8;
+  transform: scale(0.9) translateY(20px);
+  opacity: 0.8;
+}
+
+/* Efeito de stack para cards não ativos */
+.swiper-slide:nth-child(n+4) {
+  z-index: 7;
+  transform: scale(0.85) translateY(30px);
+  opacity: 0.7;
+}
+
+/* Animações para feedback visual nos cantos */
+.swipe-overlay-left {
+  animation: slideInLeft 0.4s ease-out;
+  opacity: 0.9;
+  transform: rotate(-15deg);
+  z-index: 15;
+}
+
+.swipe-overlay-right {
+  animation: slideInRight 0.4s ease-out;
+  opacity: 0.9;
+  transform: rotate(15deg);
+  z-index: 15;
+}
+
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px) rotate(-15deg) scale(0.8);
+  }
+  100% {
+    opacity: 0.9;
+    transform: translateX(0) rotate(-15deg) scale(1);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px) rotate(15deg) scale(0.8);
+  }
+  100% {
+    opacity: 0.9;
+    transform: translateX(0) rotate(15deg) scale(1);
+  }
+}
+
+/* Animações para feedback visual */
+.vote-feedback {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: feedbackPulse 0.6s ease-in-out;
+}
+
+.vote-feedback.show {
+  opacity: 1;
+}
+
+.vote-feedback.like {
+  color: #10b981;
+  font-size: 4rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 8px rgba(16, 185, 129, 0.5);
+  background-color: rgba(16, 185, 129, 0.1);
+  padding: 0.5rem 1.5rem;
+  border-radius: 12px;
+  border: 3px solid #10b981;
+}
+
+.vote-feedback.nope {
+  color: #ef4444;
+  font-size: 4rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 8px rgba(239, 68, 68, 0.5);
+  background-color: rgba(239, 68, 68, 0.1);
+  padding: 0.5rem 1.5rem;
+  border-radius: 12px;
+  border: 3px solid #ef4444;
+}
+
+@keyframes feedbackPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.9;
+  }
+}
+
+/* Melhorar aparência dos botões de ação */
+.action-button {
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.2);
+}
+
+.action-button:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.action-button:active {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsividade */
+@media (max-width: 640px) {
+  .swiper {
+    height: 500px !important;
+  }
+  
+  .action-button {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}

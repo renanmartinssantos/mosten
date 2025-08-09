@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import ListView from "./ListView";
-import TinderSwipe from "./TinderSwipe";
 import AuthModal from "./AuthModal";
 import { useUser } from "@/contexts/UserContext";
 
@@ -183,15 +182,7 @@ export default function FilmesContainer() {
       </div>
 
       {/* Conteúdo baseado no modo de visualização */}
-      {viewMode === "list" ? (
-        <ListView filmes={filmes} onVoteComplete={handleVoteComplete} />
-      ) : (
-        <TinderSwipe
-          filmes={filmes}
-          onVoteComplete={handleVoteComplete}
-          onLoginClick={handleLoginClick}
-        />
-      )}
+      <ListView filmes={filmes} onVoteComplete={handleVoteComplete} />
 
       {/* Modal de Autenticação */}
       {isAuthModalOpen && (

@@ -212,7 +212,6 @@ mosten/
 │   ├── AdminSwitch.tsx     # Interruptor do modo administrador
 │   ├── CadastroFilme.tsx   # Formulário de cadastro de filmes
 │   ├── MovieGrid.tsx       # Grid de filmes com votação
-│   ├── TinderSwipe.tsx     # Interface de swipe tipo Tinder
 │   ├── FilmesContainer.tsx # Container com alternância de visualizações
 │   ├── HeroCarousel.tsx    # Carousel de filmes em destaque
 │   ├── StatsPanel.tsx      # Painel de estatísticas

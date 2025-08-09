@@ -47,6 +47,12 @@ export default function CadastroFilme() {
           "cadastro-filme-form",
         ) as HTMLFormElement;
         form?.reset();
+        
+        // Aguardar um pouco para mostrar a mensagem de sucesso
+        setTimeout(() => {
+          // Recarregar a página para atualizar a lista de filmes
+          window.location.reload();
+        }, 1500);
       }
     } catch (error) {
       setMessage("Erro interno. Tente novamente.");
@@ -189,7 +195,14 @@ export default function CadastroFilme() {
             >
               <div className="flex items-center space-x-2">
                 <span>{message.includes("sucesso") ? "✅" : "❌"}</span>
-                <span>{message}</span>
+                <div>
+                  <div>{message}</div>
+                  {message.includes("sucesso") && (
+                    <div className="text-xs mt-1 opacity-75">
+                      Atualizando página em instantes...
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           )}

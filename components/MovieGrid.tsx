@@ -19,9 +19,11 @@ export default function MovieGrid() {
 
   const fetchFilmes = async () => {
     try {
-      const response = await fetch("/api/filmes");
+      // Adicionar timestamp para evitar cache
+      const response = await fetch(`/api/filmes?t=${Date.now()}`);
       if (response.ok) {
         const data = await response.json();
+        console.log('🎬 Filmes atualizados:', data.length);
         setFilmes(data);
       }
     } catch (error) {
@@ -40,8 +42,11 @@ export default function MovieGrid() {
     setVotingFilmeId(filmeId);
 
     try {
+      console.log('🗳️ Votando:', { filmeId, tipoVoto });
       const result = await handleVote(filmeId, tipoVoto);
+      console.log('📊 Resultado do voto:', result);
       if (result.success) {
+        console.log('🔄 Atualizando lista de filmes...');
         await fetchFilmes();
       } else {
         alert(result.message);

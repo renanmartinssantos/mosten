@@ -16,6 +16,7 @@ import { NovoFilme, NovoUsuario, LoginData } from '@/lib/definitions';
 // Ação para votar em um filme
 export async function handleVote(filmeId: number, tipoVoto: number) {
   try {
+    console.log('🗳️ Processando voto:', { filmeId, tipoVoto });
     const session = await getSession();
     
     if (!session?.isLoggedIn || !session.user) {
@@ -23,11 +24,15 @@ export async function handleVote(filmeId: number, tipoVoto: number) {
     }
 
     await registrarVoto(filmeId, session.user.id, tipoVoto);
-    revalidatePath('/');
     
+    // Revalidar múltiplas rotas
+    revalidatePath('/', 'layout');
+    revalidatePath('/api/filmes');
+    
+    console.log('✅ Voto processado com sucesso');
     return { success: true, message: 'Voto registrado com sucesso!' };
   } catch (error) {
-    console.error('Erro ao votar:', error);
+    console.error('❌ Erro ao votar:', error);
     return { 
       success: false, 
       message: error instanceof Error ? error.message : 'Erro ao registrar voto' 

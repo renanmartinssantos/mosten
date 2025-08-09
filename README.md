@@ -2,11 +2,13 @@
 
 Um sistema completo de votação para filmes desenvolvido com Next.js 14, TypeScript e PostgreSQL, apresentando uma interface moderna e funcionalidades avançadas de votação e administração.
 
+Disponibilizado Em: https://mostennexttopfilm.vercel.app
+
 ## 🚀 Características Principais
 
 ### Autenticação e Segurança
 - ✅ **Sistema de autenticação completo** com registro e login de usuários
-- ✅ **Segurança ** com JWT, bcrypt para hash de senhas e cookies httpOnly
+- ✅ **Segurança** com JWT, bcrypt para hash de senhas e cookies httpOnly
 - ✅ **Sessões persistentes** com middleware de autenticação
 - ✅ **Validação de dados** no frontend e backend
 
@@ -36,7 +38,6 @@ Um sistema completo de votação para filmes desenvolvido com Next.js 14, TypeSc
 - ✅ **PostgreSQL** com queries diretas usando postgres.js
 - ✅ **Middleware personalizado** para controle de sessões
 - ✅ **Context API** para gerenciamento de estado global
-- ✅ **SwiperJS** para interface de votação tipo Tinder
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -270,3 +271,4 @@ npm run dev
 ---
 
 Desenvolvido com Next.js 14, TypeScript e PostgreSQL
+

@@ -59,10 +59,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <UserContext.Provider
-      value={{ user, isLoading, updateUser, refreshUser }}
-      data-oid="wi6tdwy"
-    >
+    <UserContext.Provider value={{ user, isLoading, updateUser, refreshUser }}>
       {children}
     </UserContext.Provider>
   );

@@ -1,26 +1,40 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { useUser } from "@/contexts/UserContext";
 
 type AdminContextType = {
   isAdminMode: boolean;
-  toggleAdminMode: () => void;
+  toggleAdminMode: (onLoginRequired?: () => void) => void;
 };
 
 const AdminContext = createContext<AdminContextType | undefined>(undefined);
 
 export function AdminProvider({ children }: { children: ReactNode }) {
   const [isAdminMode, setIsAdminMode] = useState(false);
+  const { user } = useUser();
 
-  const toggleAdminMode = () => {
+  // Desativar modo admin quando user faz logout
+  useEffect(() => {
+    if (!user && isAdminMode) {
+      setIsAdminMode(false);
+    }
+  }, [user, isAdminMode]);
+
+  const toggleAdminMode = (onLoginRequired?: () => void) => {
+    if (!user && !isAdminMode) {
+      // Se não está logado e está tentando ativar o modo admin
+      if (onLoginRequired) {
+        onLoginRequired();
+      }
+      return;
+    }
+    
     setIsAdminMode(!isAdminMode);
   };
 
   return (
-    <AdminContext.Provider
-      value={{ isAdminMode, toggleAdminMode }}
-      data-oid="86m7jkm"
-    >
+    <AdminContext.Provider value={{ isAdminMode, toggleAdminMode }}>
       {children}
     </AdminContext.Provider>
   );
@@ -34,31 +48,32 @@ export function useAdmin() {
   return context;
 }
 
-export default function AdminSwitch() {
+export default function AdminSwitch({ onLoginRequired }: { onLoginRequired?: () => void }) {
   const { isAdminMode, toggleAdminMode } = useAdmin();
+  const { user } = useUser();
+
+  const handleToggle = () => {
+    toggleAdminMode(onLoginRequired);
+  };
 
   return (
-    <div className="flex items-center space-x-2" data-oid="cza9ci0">
-      <span className="text-sm text-gray-600" data-oid="bp_e9kn">
-        Admin Mode:
-      </span>
+    <div className="flex items-center space-x-2">
+      <span className="text-sm text-gray-300">Admin Mode:</span>
       <button
-        onClick={toggleAdminMode}
-        className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 ${
-          isAdminMode ? "bg-primary-600" : "bg-gray-200"
+        onClick={handleToggle}
+        className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 ${
+          isAdminMode ? "bg-yellow-500" : "bg-gray-600"
         }`}
-        data-oid="zwsjvy8"
+        title={!user && !isAdminMode ? "Faça login para ativar o modo Admin" : ""}
       >
         <span
           className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
             isAdminMode ? "translate-x-6" : "translate-x-1"
           }`}
-          data-oid="irdz.h1"
         />
       </button>
       <span
-        className={`text-sm font-medium ${isAdminMode ? "text-primary-600" : "text-gray-400"}`}
-        data-oid="n75hrqo"
+        className={`text-sm font-medium ${isAdminMode ? "text-yellow-400" : "text-gray-400"}`}
       >
         {isAdminMode ? "ON" : "OFF"}
       </span>

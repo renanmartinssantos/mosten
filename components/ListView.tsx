@@ -49,17 +49,12 @@ export default function ListView({ filmes, onVoteComplete }: ListViewProps) {
 
   if (filmes.length === 0) {
     return (
-      <div className="text-center py-12" data-oid="5lqrk.x">
-        <div className="text-6xl mb-4" data-oid="55.yctk">
-          🎬
-        </div>
-        <h3
-          className="text-xl font-semibold text-gray-700 mb-2"
-          data-oid="dnu_d_e"
-        >
+      <div className="text-center py-12">
+        <div className="text-6xl mb-4">🎬</div>
+        <h3 className="text-xl font-semibold text-gray-700 mb-2">
           Nenhum filme cadastrado
         </h3>
-        <p className="text-gray-500" data-oid="dtgrziw">
+        <p className="text-gray-500">
           Ative o modo Admin para cadastrar novos filmes!
         </p>
       </div>
@@ -67,17 +62,10 @@ export default function ListView({ filmes, onVoteComplete }: ListViewProps) {
   }
 
   return (
-    <div
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-      data-oid="-b2syvc"
-    >
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {filmes.map((filme) => (
-        <div
-          key={filme.id}
-          className="card hover:shadow-lg transition-shadow"
-          data-oid="qgpwp.q"
-        >
-          <div className="relative mb-4" data-oid="ww6x6ks">
+        <div key={filme.id} className="card hover:shadow-lg transition-shadow">
+          <div className="relative mb-4">
             <Image
               src={filme.imagemUrl}
               alt={filme.titulo}
@@ -86,70 +74,47 @@ export default function ListView({ filmes, onVoteComplete }: ListViewProps) {
               className="w-full h-64 object-cover rounded"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
-                target.src = "/placeholder-movie.png";
+                target.src = "";
               }}
-              data-oid="3n01a23"
             />
 
-            <div
-              className="absolute top-2 right-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded"
-              data-oid="x6lv5zy"
-            >
+            <div className="absolute top-2 right-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded">
               {filme.genero}
             </div>
 
             {/* Stats overlay */}
-            <div
-              className="absolute bottom-2 left-2 right-2 flex justify-between"
-              data-oid="obvlwyi"
-            >
-              <div
-                className="bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded flex items-center space-x-1"
-                data-oid="qqn0efu"
-              >
-                <span data-oid="i2bcjru">❤️</span>
-                <span data-oid="x4rm_73">{filme.gostei}</span>
+            <div className="absolute bottom-2 left-2 right-2 flex justify-between">
+              <div className="bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded flex items-center space-x-1">
+                <span>❤️</span>
+                <span>{filme.gostei}</span>
               </div>
-              <div
-                className="bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded flex items-center space-x-1"
-                data-oid="gervzeu"
-              >
-                <span data-oid="86s9_on">💔</span>
-                <span data-oid="9gcsj98">{filme.naoGostei}</span>
+              <div className="bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded flex items-center space-x-1">
+                <span>💔</span>
+                <span>{filme.naoGostei}</span>
               </div>
             </div>
           </div>
 
-          <h3
-            className="text-lg font-semibold mb-2 line-clamp-2"
-            data-oid="j19kt33"
-          >
+          <h3 className="text-lg font-semibold mb-2 line-clamp-2">
             {filme.titulo}
           </h3>
 
           {filme.descricao && (
-            <p
-              className="text-gray-600 text-sm mb-4 line-clamp-3"
-              data-oid="qb9-h8o"
-            >
+            <p className="text-gray-600 text-sm mb-4 line-clamp-3">
               {filme.descricao}
             </p>
           )}
 
-          <div className="flex gap-2 mb-4" data-oid="nea7hry">
+          <div className="flex gap-2 mb-4">
             <button
               onClick={() => handleVoteClick(filme.id, 1)}
               disabled={!user || votingFilmeId === filme.id}
               className={`btn btn-success flex-1 flex items-center justify-center gap-2 ${
                 !user ? "opacity-50 cursor-not-allowed" : ""
               }`}
-              data-oid="qoi6nvf"
             >
               {votingFilmeId === filme.id ? (
-                <div
-                  className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"
-                  data-oid="fl:p7pz"
-                ></div>
+                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
               ) : (
                 <>❤️ {filme.gostei}</>
               )}
@@ -161,13 +126,9 @@ export default function ListView({ filmes, onVoteComplete }: ListViewProps) {
               className={`btn btn-danger flex-1 flex items-center justify-center gap-2 ${
                 !user ? "opacity-50 cursor-not-allowed" : ""
               }`}
-              data-oid="m7xu73l"
             >
               {votingFilmeId === filme.id ? (
-                <div
-                  className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"
-                  data-oid="fa:.6e5"
-                ></div>
+                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
               ) : (
                 <>💔 {filme.naoGostei}</>
               )}
@@ -175,7 +136,7 @@ export default function ListView({ filmes, onVoteComplete }: ListViewProps) {
           </div>
 
           {!user && (
-            <p className="text-xs text-gray-500 text-center" data-oid="w:9kmxk">
+            <p className="text-xs text-gray-500 text-center">
               Faça login para votar
             </p>
           )}

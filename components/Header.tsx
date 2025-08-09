@@ -41,64 +41,42 @@ export default function Header() {
   return (
     <>
       {/* Fixed Header */}
-      <header
-        className="fixed top-0 left-0 right-0 z-50 bg-gray-900 shadow-lg"
-        data-oid="78p.c8:"
-      >
-        <div className="container mx-auto px-4 py-3" data-oid="ttznkz.">
-          <div className="flex items-center justify-between" data-oid="a20k1d6">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-gray-900 shadow-lg">
+        <div className="container mx-auto px-4 py-3">
+          <div className="flex items-center justify-between">
             {/* Logo */}
-            <div className="flex items-center" data-oid="vqi7k7j">
-              <h1 className="text-2xl font-bold text-white" data-oid="yb02-ul">
-                🎬{" "}
-                <span className="text-yellow-400" data-oid="9c..z6h">
-                  Mosten
-                </span>
+            <div className="flex items-center">
+              <h1 className="text-2xl font-bold text-white">
+                🎬 <span className="text-yellow-400">Mosten Films</span>
               </h1>
             </div>
 
             {/* Search Bar - Center */}
-            <div className="flex-1 max-w-2xl mx-8" data-oid="2:9yisp">
-              <SearchBar data-oid="hkkb_1q" />
-            </div>
+            {/* <div className="flex-1 max-w-2xl mx-8">
+              <SearchBar />
+            </div> */}
 
             {/* User Section - Right */}
-            <div className="flex items-center space-x-4" data-oid="l8__h3q">
-              <AdminSwitch data-oid="uoob3.b" />
+            <div className="flex items-center space-x-4">
+              <AdminSwitch onLoginRequired={handleAuth} />
 
               {isLoading ? (
-                <div
-                  className="w-10 h-10 bg-gray-700 animate-pulse rounded-full"
-                  data-oid="es1b2uy"
-                ></div>
+                <div className="w-10 h-10 bg-gray-700 animate-pulse rounded-full"></div>
               ) : user ? (
-                <div className="flex items-center space-x-3" data-oid="4t_dvbl">
-                  <div
-                    className="flex items-center space-x-2"
-                    data-oid="d4awq-w"
-                  >
-                    <div
-                      className="w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center"
-                      data-oid="7e_bmhc"
-                    >
-                      <span
-                        className="text-white text-sm font-bold"
-                        data-oid="m976q1m"
-                      >
+                <div className="flex items-center space-x-3">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
+                      <span className="text-white text-sm font-bold">
                         {user.nome.charAt(0).toUpperCase()}
                       </span>
                     </div>
-                    <span
-                      className="text-white text-sm font-medium hidden md:block"
-                      data-oid="w_9v4mk"
-                    >
+                    <span className="text-white text-sm font-medium hidden md:block">
                       {user.nome}
                     </span>
                   </div>
                   <button
                     onClick={handleLogoutClick}
                     className="text-gray-300 hover:text-white text-sm transition-colors"
-                    data-oid="ow1euuh"
                   >
                     Sair
                   </button>
@@ -107,7 +85,6 @@ export default function Header() {
                 <button
                   onClick={handleAuth}
                   className="bg-yellow-500 hover:bg-yellow-600 text-gray-900 px-4 py-2 rounded-lg font-medium transition-colors"
-                  data-oid="reyhcxu"
                 >
                   Entrar
                 </button>
@@ -118,13 +95,12 @@ export default function Header() {
       </header>
 
       {/* Spacer for fixed header */}
-      <div className="h-16" data-oid="arp2rl-"></div>
+      <div className="h-14"></div>
 
       {isAuthModalOpen && (
         <AuthModal
           onClose={() => setIsAuthModalOpen(false)}
           onSuccess={handleAuthSuccess}
-          data-oid="4j4p9ph"
         />
       )}
     </>

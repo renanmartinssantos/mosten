@@ -1,26 +1,53 @@
-# 🎬 Mosten - Sistema de Votação de Filmes
+# 🎬 Mosten Films - Sistema de Votação de Filmes
 
-Um sistema completo de votação para filmes e séries desenvolvido com Next.js 14, TypeScript e PostgreSQL.
+Um sistema completo de votação para filmes desenvolvido com Next.js 14, TypeScript e PostgreSQL, apresentando uma interface moderna e funcionalidades avançadas de votação e administração.
 
-## 🚀 Características
+## 🚀 Características Principais
 
-- ✅ **Autenticação de usuários** (registro e login)
-- ✅ **Sistema de votação** (👍 Gostei / 👎 Não Gostei)
-- ✅ **Modo administrador** com interruptor para cadastro de filmes
-- ✅ **Interface moderna** com Tailwind CSS
-- ✅ **Segurança** com JWT e senhas hasheadas
-- ✅ **Responsivo** para desktop e mobile
-- ✅ **Persistência de dados** em PostgreSQL
+### Autenticação e Segurança
+- ✅ **Sistema de autenticação completo** com registro e login de usuários
+- ✅ **Segurança ** com JWT, bcrypt para hash de senhas e cookies httpOnly
+- ✅ **Sessões persistentes** com middleware de autenticação
+- ✅ **Validação de dados** no frontend e backend
+
+### Sistema de Votação Inteligente
+- ✅ **Votação interativa** (👍 Gostei / 👎 Não Gostei)
+- ✅ **Controle de votos** - um voto por usuário por filme com possibilidade de alteração
+- ✅ **Estatísticas em tempo real** com contadores dinâmicos
+
+### Modo Administrador
+- ✅ **Painel administrativo** com toggle de ativação no header
+- ✅ **Cadastro completo de filmes** com título, gênero, imagens e descrição
+- ✅ **Upload de imagens** via URL com suporte a banners horizontais
+- ✅ **Gerenciamento de gêneros** pré-cadastrados
+- ✅ **Restrição de acesso** - apenas usuários logados podem ativar modo admin
+
+### Interface e Experiência do Usuário
+- ✅ **Design moderno e responsivo** com Tailwind CSS e gradientes
+- ✅ **Animações fluidas** e estados de carregamento
+- ✅ **Cards de filmes modernos** com overlays, badges e informações detalhadas
+- ✅ **Modal de autenticação** com loading states e feedback visual
+- ✅ **Dashboard de estatísticas** com métricas de votação
+- ✅ **Carousel de destaques** com filmes mais votados
+
+### Tecnologias e Arquitetura
+- ✅ **Next.js 14** com App Router e Server Actions
+- ✅ **TypeScript** para tipagem estática e maior segurança
+- ✅ **PostgreSQL** com queries diretas usando postgres.js
+- ✅ **Middleware personalizado** para controle de sessões
+- ✅ **Context API** para gerenciamento de estado global
+- ✅ **SwiperJS** para interface de votação tipo Tinder
 
 ## 🛠️ Tecnologias Utilizadas
 
-- **Framework**: Next.js 14 (App Router)
-- **Linguagem**: TypeScript
-- **Estilização**: Tailwind CSS
-- **Banco de Dados**: PostgreSQL
-- **ORM**: postgres.js (conexão direta)
-- **Autenticação**: JWT com jose
-- **Hash de senhas**: bcrypt
+- **Framework**: Next.js 14 (App Router, Server Actions, Middleware)
+- **Linguagem**: TypeScript para tipagem estática
+- **Estilização**: Tailwind CSS com componentes customizados
+- **Banco de Dados**: PostgreSQL com postgres.js
+- **Autenticação**: JWT com jose e cookies httpOnly
+- **Hash de senhas**: bcrypt para segurança
+- **UI Components**: SwiperJS para interface de swipe
+- **Ícones**: Lucide React e Heroicons
 
 ## 📋 Pré-requisitos
 
@@ -79,136 +106,175 @@ Acesse [http://localhost:3000](http://localhost:3000) para ver a aplicação.
 3. **Cadastre novos filmes** usando o formulário que aparecerá
 4. Preencha: título, gênero, URL da imagem e descrição (opcional)
 
-## 🎨 Funcionalidades
+## 📖 Funcionalidades Detalhadas
 
-### Autenticação
-- Registro de novos usuários
-- Login seguro com verificação de senha
-- Sessões persistentes com JWT
-- Logout seguro
+### Sistema de Autenticação
+- **Registro de usuários** com validação de email único
+- **Login seguro** com verificação de credenciais
+- **Sessões persistentes** usando JWT e cookies seguros
+- **Logout** com limpeza de sessão
+- **Middleware de proteção** para rotas sensíveis
 
-### Votação
-- Apenas usuários logados podem votar
-- Um voto por usuário por filme
-- Possibilidade de alterar o voto
-- Contadores em tempo real
+### Interface de Votação
+- **Modo Grid**: Cards modernos com informações completas dos filmes
+- **Restrição de acesso**: Apenas usuários logados podem votar
+- **Alteração de votos**: Possibilidade de mudar opinião sobre filmes
 
-### Administração
-- Interruptor de modo admin no cabeçalho
-- Cadastro de novos filmes
-- Seleção de gêneros pré-cadastrados
-- Upload de imagens via URL
+### Painel Administrativo
+- **Toggle Admin**: Ativação do modo admin no header (apenas para usuários logados)
+- **Cadastro de filmes**: Formulário completo com validações
+- **Upload de imagens**: Suporte a poster vertical e banner horizontal
+- **Gerenciamento**: Criação e edição de conteúdo
+- **Segurança**: Acesso restrito e validado
 
-### Interface
-- Design moderno e responsivo
-- Animações e estados de carregamento
-- Feedback visual para ações
-- Cards informativos para cada filme
+### Dashboard e Estatísticas
+- **Carousel de destaques**: Filmes mais votados em rotação automática
+- **Métricas em tempo real**: Contadores de votos atualizados instantaneamente
+- **Barras de progresso**: Visualização da proporção de votos positivos/negativos
+- **Estatísticas globais**: Total de filmes, likes e dislikes
 
-## 🗃️ Estrutura do Banco de Dados
+### Experiência do Usuário
+- **Design responsivo**: Interface adaptada para desktop e mobile
+- **Estados de carregamento**: Skeletons e spinners durante operações
+- **Feedback visual**: Confirmações e alertas para ações do usuário
+- **Navegação intuitiva**: UX otimizada para facilidade de uso
 
-### Tabelas:
+## 🗃️ Arquitetura do Banco de Dados
+
+### Esquema Relacional:
 
 **Generos**
-- `id`: Identificador único
-- `nome`: Nome do gênero
+- `id`: Chave primária, auto-incremento
+- `nome`: Nome do gênero (varchar único)
 
 **Usuarios**
-- `id`: Identificador único
-- `nome`: Nome completo
-- `email`: Email único
-- `senha_hash`: Senha hasheada
-- `data_cadastro`: Data de criação
+- `id`: Chave primária, auto-incremento
+- `nome`: Nome completo do usuário
+- `email`: Email único para login
+- `senha_hash`: Senha criptografada com bcrypt
+- `data_cadastro`: Timestamp de criação
 
 **Filmes**
-- `id`: Identificador único
+- `id`: Chave primária, auto-incremento
 - `titulo`: Título do filme
-- `descricao`: Descrição (opcional)
-- `imagem_url`: URL da imagem
-- `genero_id`: Referência ao gênero
-- `data_cadastro`: Data de criação
+- `descricao`: Descrição opcional (text)
+- `imagem_url`: URL do poster do filme
+- `banner_top_url`: URL do banner horizontal (opcional)
+- `genero_id`: Chave estrangeira para Generos
+- `data_cadastro`: Timestamp de criação
 
 **Votos**
-- `id`: Identificador único
+- `id`: Chave primária, auto-incremento
 - `tipo_voto`: 1 (Gostei) ou -1 (Não Gostei)
-- `filme_id`: Referência ao filme
-- `usuario_id`: Referência ao usuário
-- `data_voto`: Data do voto
-- **Constraint**: Único por (filme_id, usuario_id)
+- `filme_id`: Chave estrangeira para Filmes
+- `usuario_id`: Chave estrangeira para Usuarios
+- `data_voto`: Timestamp do voto
+- **Constraint UNIQUE**: (filme_id, usuario_id) - previne votos duplicados
 
-## 🔒 Segurança
+### Relacionamentos:
+- **Filmes ↔ Generos**: Muitos para Um (filme tem um gênero)
+- **Votos ↔ Filmes**: Muitos para Um (voto pertence a um filme)
+- **Votos ↔ Usuarios**: Muitos para Um (voto pertence a um usuário)
+- **Votos**: Constraint única por usuário/filme para integridade dos dados
 
-- **Senhas hasheadas** com bcrypt
-- **JWT tokens** seguros e encriptados
-- **SQL parametrizado** para prevenir SQL Injection
-- **Cookies httpOnly** para sessões
-- **Validação de dados** no frontend e backend
+## 🔒 Segurança e Boas Práticas
 
-## 📁 Estrutura do Projeto
+### Autenticação e Autorização
+- **Senhas hasheadas** com bcrypt (salt rounds otimizado)
+- **JWT tokens** seguros com chave secreta robusta
+- **Cookies httpOnly** para prevenir ataques XSS
+- **Middleware de autenticação** para proteger rotas sensíveis
+- **Validação de sessão** em cada requisição protegida
+
+### Arquitetura Segura
+- **Separation of Concerns**: Camadas bem definidas (auth, data, UI)
+- **Environment Variables**: Configurações sensíveis isoladas
+- **Server Actions**: Comunicação segura entre cliente e servidor
+- **Context API**: Gerenciamento seguro de estado global
+
+## 📁 Estrutura e Organização do Projeto
 
 ```
 mosten/
-├── app/                    # Next.js App Router
-│   ├── actions.ts         # Server Actions
-│   ├── globals.css        # Estilos globais
-│   ├── layout.tsx         # Layout principal
-│   ├── page.tsx          # Página inicial
-│   └── api/              # Rotas da API
-├── components/           # Componentes React
-│   ├── Header.tsx        # Cabeçalho com auth
-│   ├── AdminSwitch.tsx   # Interruptor admin
-│   ├── AuthModal.tsx     # Modal de login/registro
-│   ├── CadastroFilme.tsx # Formulário de filmes
-│   └── ListaFilmes.tsx   # Lista de filmes
-├── lib/                  # Utilitários
-│   ├── auth.ts          # Funções de autenticação
-│   ├── data.ts          # Acesso aos dados
-│   ├── db.ts            # Conexão com o banco
-│   └── definitions.ts    # Tipos TypeScript
-├── database/
-│   └── schema.sql       # Script de criação do banco
-└── ...configurações
+├── app/                      # Next.js 14 App Router
+│   ├── actions.ts           # Server Actions (handleLogin, handleVote, etc.)
+│   ├── globals.css          # Estilos globais e utilitários Tailwind
+│   ├── layout.tsx           # Layout raiz com providers
+│   ├── middleware.ts        # Middleware de autenticação
+│   ├── page.tsx            # Página inicial com componentes principais
+│   └── api/                # API Routes
+│       ├── filmes/         # Endpoints para filmes
+│       ├── session/        # Gerenciamento de sessão
+│       └── generos/        # Endpoints para gêneros
+├── components/             # Componentes React reutilizáveis
+│   ├── Header.tsx          # Cabeçalho com autenticação e admin toggle
+│   ├── AuthModal.tsx       # Modal de login/registro com loading states
+│   ├── AdminSwitch.tsx     # Interruptor do modo administrador
+│   ├── CadastroFilme.tsx   # Formulário de cadastro de filmes
+│   ├── MovieGrid.tsx       # Grid de filmes com votação
+│   ├── TinderSwipe.tsx     # Interface de swipe tipo Tinder
+│   ├── FilmesContainer.tsx # Container com alternância de visualizações
+│   ├── HeroCarousel.tsx    # Carousel de filmes em destaque
+│   ├── StatsPanel.tsx      # Painel de estatísticas
+│   └── ListView.tsx        # Visualização em lista
+├── contexts/               # Context API para estado global
+│   └── UserContext.tsx     # Contexto de usuário e autenticação
+├── lib/                    # Utilitários e configurações
+│   ├── auth.ts            # Funções de autenticação JWT
+│   ├── data.ts            # Acesso aos dados e queries SQL
+│   ├── db.ts              # Configuração e conexão PostgreSQL
+│   └── definitions.ts      # Tipos TypeScript e interfaces
+├── database/              # Scripts de banco de dados
+│   ├── schema.sql         # Schema principal do banco
+│   └── migrations/        # Migrações (bannerTopUrl, etc.)
+├── public/               # Arquivos estáticos
+└── ...                   # Configurações (next.config.mjs, etc.)
 ```
 
-## 🚀 Deploy
+### Destaques da Arquitetura:
+- **Server Actions**: Comunicação segura entre cliente e servidor
+- **Middleware personalizado**: Interceptação e validação de requisições
+- **Context API**: Estado global reativo para autenticação
+- **Componentes modulares**: Reutilização e manutenibilidade
+- **Tipagem completa**: TypeScript em toda a aplicação
 
-### Vercel (Recomendado)
-1. Faça push para um repositório Git
-2. Conecte com Vercel
-3. Configure as variáveis de ambiente
-4. Deploy automático
+## 🚀 Instalação e Configuração
 
-### Outras plataformas
-1. Build da aplicação: `npm run build`
-2. Configure as variáveis de ambiente
-3. Execute: `npm start`
+### Pré-requisitos
+- Node.js 18+ 
+- PostgreSQL (local ou remoto)
+- npm ou yarn
 
-## 🤝 Contribuição
+### Setup do Projeto
 
-1. Fork o projeto
-2. Crie uma branch: `git checkout -b feature/nova-funcionalidade`
-3. Commit suas mudanças: `git commit -m 'Adiciona nova funcionalidade'`
-4. Push para a branch: `git push origin feature/nova-funcionalidade`
-5. Abra um Pull Request
+**1. Clone e instale dependências**
+```bash
+git clone <repositorio>
+cd mosten
+npm install
+```
 
-## 📝 Licença
+**2. Configuração do banco**
+```env
+# .env.local
+DATABASE_HOST=seu_host
+DATABASE_NAME=mosten_db
+DATABASE_USER=seu_usuario
+DATABASE_PASSWORD=sua_senha
+JWT_SECRET=chave_secreta_longa_e_segura
+```
 
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+**4. Execução**
+```bash
+npm run dev
+# Acesse: http://localhost:3000
+```
+```
 
-## 🎯 Roadmap
-
-- [ ] Sistema de categorias personalizadas
-- [ ] Comentários em filmes
-- [ ] Sistema de favoritos
-- [ ] Dashboard administrativo
-- [ ] API externa para busca de filmes
-- [ ] Sistema de notificações
-- [ ] Ranking de usuários mais ativos
-
-## 📞 Suporte
-
-Para dúvidas ou problemas, abra uma issue no repositório ou entre em contato.
+**Variáveis de ambiente necessárias:**
+- `DATABASE_HOST`, `DATABASE_NAME`, `DATABASE_USER`, `DATABASE_PASSWORD`
+- `JWT_SECRET` (string longa e aleatória)
 
 ---
 
-Desenvolvido com ❤️ usando Next.js e TypeScript
+Desenvolvido com Next.js 14, TypeScript e PostgreSQL

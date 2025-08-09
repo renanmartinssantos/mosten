@@ -56,15 +56,9 @@ export default function HeroCarousel() {
 
   if (isLoading) {
     return (
-      <div
-        className="relative h-96 bg-gray-800 animate-pulse"
-        data-oid="j.d9k_d"
-      >
-        <div
-          className="absolute inset-0 flex items-center justify-center"
-          data-oid="8mj.y-b"
-        >
-          <div className="text-white text-lg" data-oid="d4_5jj3">
+      <div className="relative h-96 bg-gray-800 animate-pulse">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-white text-lg">
             Carregando filmes em destaque...
           </div>
         </div>
@@ -74,42 +68,25 @@ export default function HeroCarousel() {
 
   if (filmes.length === 0) {
     return (
-      <div
-        className="relative h-96 bg-gradient-to-r from-gray-800 to-gray-900 flex items-center justify-center"
-        data-oid="3d6g1tz"
-      >
-        <div className="text-center text-white" data-oid="0fip61s">
-          <div className="text-6xl mb-4" data-oid="ej0n-jm">
-            🎬
-          </div>
-          <h2 className="text-2xl font-bold mb-2" data-oid=":ozwilq">
-            Nenhum filme em destaque
-          </h2>
-          <p className="text-gray-300" data-oid="t17jffi">
-            Cadastre filmes para vê-los aqui!
-          </p>
+      <div className="relative h-96 bg-gradient-to-r from-gray-800 to-gray-900 flex items-center justify-center">
+        <div className="text-center text-white">
+          <div className="text-6xl mb-4">🎬</div>
+          <h2 className="text-2xl font-bold mb-2">Nenhum filme em destaque</h2>
+          <p className="text-gray-300">Cadastre filmes para vê-los aqui!</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div
-      className="relative h-96 overflow-hidden bg-gray-900"
-      data-oid="uec3lhy"
-    >
+    <div className="relative h-96  overflow-hidden bg-gray-900">
       {/* Slides */}
       <div
         className="flex transition-transform duration-500 ease-in-out h-full"
         style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-        data-oid="a9iujm."
       >
         {filmes.map((filme, index) => (
-          <div
-            key={filme.id}
-            className="min-w-full relative"
-            data-oid="n7qdzd_"
-          >
+          <div key={filme.id} className="min-w-full relative">
             <Image
               src={filme.imagemUrl}
               alt={filme.titulo}
@@ -117,60 +94,35 @@ export default function HeroCarousel() {
               className="object-cover object-top"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
-                target.src = "/placeholder-movie.png";
+                target.src = "";
               }}
-              data-oid="s2bu2g2"
             />
 
             {/* Overlay */}
-            <div
-              className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"
-              data-oid="roaivn_"
-            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
             {/* Content */}
-            <div
-              className="absolute bottom-0 left-0 right-0 p-8 text-white"
-              data-oid="fva:eyu"
-            >
-              <div className="container mx-auto" data-oid="qk9miew">
-                <div className="mb-2" data-oid="vx5kah6">
-                  <span
-                    className="text-yellow-400 text-sm font-medium uppercase tracking-wide"
-                    data-oid="lzy8ey:"
-                  >
+            <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+              <div className="container mx-auto">
+                <div className="mb-2">
+                  <span className="text-yellow-400 text-sm font-medium uppercase tracking-wide">
                     ⭐ Destaques da Semana
                   </span>
                 </div>
-                <h2
-                  className="text-4xl font-bold mb-2 drop-shadow-lg"
-                  data-oid="38jvy60"
-                >
+                <h2 className="text-4xl font-bold mb-2 drop-shadow-lg">
                   {filme.titulo}
                 </h2>
-                <div
-                  className="flex items-center space-x-4 text-sm"
-                  data-oid="vqu6pl-"
-                >
-                  <span
-                    className="bg-yellow-500 text-gray-900 px-2 py-1 rounded font-medium"
-                    data-oid="bklhvz3"
-                  >
+                <div className="flex items-center space-x-4 text-sm">
+                  <span className="bg-yellow-500 text-gray-900 px-2 py-1 rounded font-medium">
                     {filme.genero}
                   </span>
-                  <span
-                    className="flex items-center space-x-1"
-                    data-oid="a-8alqp"
-                  >
-                    <span data-oid="3lmffqe">👍</span>
-                    <span data-oid="9w-4dz_">{filme.gostei}</span>
+                  <span className="flex items-center space-x-1">
+                    <span>👍</span>
+                    <span>{filme.gostei}</span>
                   </span>
-                  <span
-                    className="flex items-center space-x-1"
-                    data-oid="t7hftsd"
-                  >
-                    <span data-oid="bls12r.">👎</span>
-                    <span data-oid="5rsfe48">{filme.naoGostei}</span>
+                  <span className="flex items-center space-x-1">
+                    <span>👎</span>
+                    <span>{filme.naoGostei}</span>
                   </span>
                 </div>
               </div>
@@ -185,26 +137,21 @@ export default function HeroCarousel() {
           <button
             onClick={prevSlide}
             className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-75 text-white p-2 rounded-full transition-all"
-            data-oid="9nex45q"
           >
-            <ChevronLeftIcon className="h-6 w-6" data-oid="nmgh4bs" />
+            <ChevronLeftIcon className="h-6 w-6" />
           </button>
           <button
             onClick={nextSlide}
             className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-75 text-white p-2 rounded-full transition-all"
-            data-oid="_w6sub:"
           >
-            <ChevronRightIcon className="h-6 w-6" data-oid="hotv65j" />
+            <ChevronRightIcon className="h-6 w-6" />
           </button>
         </>
       )}
 
       {/* Dots Indicator */}
       {filmes.length > 1 && (
-        <div
-          className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2"
-          data-oid="h:n90k3"
-        >
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
           {filmes.map((_, index) => (
             <button
               key={index}
@@ -214,7 +161,6 @@ export default function HeroCarousel() {
                   ? "bg-yellow-500"
                   : "bg-white bg-opacity-50"
               }`}
-              data-oid="j-c9bol"
             />
           ))}
         </div>

@@ -65,33 +65,15 @@ export default function ListaFilmes() {
 
   if (isLoading) {
     return (
-      <div
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        data-oid="15o8y6x"
-      >
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {[...Array(6)].map((_, i) => (
-          <div key={i} className="card animate-pulse" data-oid="wvedbfw">
-            <div
-              className="bg-gray-300 h-64 rounded mb-4"
-              data-oid="n5gh_pc"
-            ></div>
-            <div
-              className="h-4 bg-gray-300 rounded mb-2"
-              data-oid="rqx1fgc"
-            ></div>
-            <div
-              className="h-3 bg-gray-300 rounded w-3/4 mb-4"
-              data-oid="el29u5y"
-            ></div>
-            <div className="flex gap-2" data-oid="tban95q">
-              <div
-                className="h-8 bg-gray-300 rounded flex-1"
-                data-oid="6koohub"
-              ></div>
-              <div
-                className="h-8 bg-gray-300 rounded flex-1"
-                data-oid="p27dzqe"
-              ></div>
+          <div key={i} className="card animate-pulse">
+            <div className="bg-gray-300 h-64 rounded mb-4"></div>
+            <div className="h-4 bg-gray-300 rounded mb-2"></div>
+            <div className="h-3 bg-gray-300 rounded w-3/4 mb-4"></div>
+            <div className="flex gap-2">
+              <div className="h-8 bg-gray-300 rounded flex-1"></div>
+              <div className="h-8 bg-gray-300 rounded flex-1"></div>
             </div>
           </div>
         ))}
@@ -101,17 +83,12 @@ export default function ListaFilmes() {
 
   if (filmes.length === 0) {
     return (
-      <div className="text-center py-12" data-oid="c5u-7b9">
-        <div className="text-6xl mb-4" data-oid="lqe_xyf">
-          🎬
-        </div>
-        <h3
-          className="text-xl font-semibold text-gray-700 mb-2"
-          data-oid="z.htkgt"
-        >
+      <div className="text-center py-12">
+        <div className="text-6xl mb-4">🎬</div>
+        <h3 className="text-xl font-semibold text-gray-700 mb-2">
           Nenhum filme cadastrado
         </h3>
-        <p className="text-gray-500" data-oid="vrx07g-">
+        <p className="text-gray-500">
           Ative o modo Admin para cadastrar novos filmes!
         </p>
       </div>
@@ -119,17 +96,10 @@ export default function ListaFilmes() {
   }
 
   return (
-    <div
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-      data-oid="x9pddwn"
-    >
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {filmes.map((filme) => (
-        <div
-          key={filme.id}
-          className="card hover:shadow-lg transition-shadow"
-          data-oid="x80nmg:"
-        >
-          <div className="relative mb-4" data-oid="hen38n0">
+        <div key={filme.id} className="card hover:shadow-lg transition-shadow">
+          <div className="relative mb-4">
             <Image
               src={filme.imagemUrl}
               alt={filme.titulo}
@@ -138,49 +108,35 @@ export default function ListaFilmes() {
               className="w-full h-64 object-cover rounded"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
-                target.src = "/placeholder-movie.png";
+                target.src = "";
               }}
-              data-oid="s5-i2qq"
             />
 
-            <div
-              className="absolute top-2 right-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded"
-              data-oid="wgm-1tg"
-            >
+            <div className="absolute top-2 right-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded">
               {filme.genero}
             </div>
           </div>
 
-          <h3
-            className="text-lg font-semibold mb-2 line-clamp-2"
-            data-oid="_w2iq6m"
-          >
+          <h3 className="text-lg font-semibold mb-2 line-clamp-2">
             {filme.titulo}
           </h3>
 
           {filme.descricao && (
-            <p
-              className="text-gray-600 text-sm mb-4 line-clamp-3"
-              data-oid="289.7f2"
-            >
+            <p className="text-gray-600 text-sm mb-4 line-clamp-3">
               {filme.descricao}
             </p>
           )}
 
-          <div className="flex gap-2 mb-4" data-oid="mjmrzfm">
+          <div className="flex gap-2 mb-4">
             <button
               onClick={() => handleVoteClick(filme.id, 1)}
               disabled={!user || votingFilmeId === filme.id}
               className={`btn btn-success flex-1 flex items-center justify-center gap-2 ${
                 !user ? "opacity-50 cursor-not-allowed" : ""
               }`}
-              data-oid="-1zxovj"
             >
               {votingFilmeId === filme.id ? (
-                <div
-                  className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"
-                  data-oid="zkchgrc"
-                ></div>
+                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
               ) : (
                 <>👍 {filme.gostei}</>
               )}
@@ -192,13 +148,9 @@ export default function ListaFilmes() {
               className={`btn btn-danger flex-1 flex items-center justify-center gap-2 ${
                 !user ? "opacity-50 cursor-not-allowed" : ""
               }`}
-              data-oid="re6wbba"
             >
               {votingFilmeId === filme.id ? (
-                <div
-                  className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"
-                  data-oid="m7_ktwd"
-                ></div>
+                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
               ) : (
                 <>👎 {filme.naoGostei}</>
               )}
@@ -206,7 +158,7 @@ export default function ListaFilmes() {
           </div>
 
           {!user && (
-            <p className="text-xs text-gray-500 text-center" data-oid="ymynkcb">
+            <p className="text-xs text-gray-500 text-center">
               Faça login para votar
             </p>
           )}

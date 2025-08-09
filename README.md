@@ -2,12 +2,6 @@
 
 Um sistema completo de votação para filmes desenvolvido com Next.js 14, TypeScript e PostgreSQL, apresentando uma interface moderna e funcionalidades avançadas de votação e administração.
 
-## 🌐 Demonstração Online
-
-**🔗 Acesse a aplicação:** [https://mostennexttopfilm.vercel.app](https://mostennexttopfilm.vercel.app)
-
-*Teste todas as funcionalidades: cadastre-se, vote nos filmes, ative o modo admin e explore a interface completa.*
-
 ## 🚀 Características Principais
 
 ### Autenticação e Segurança

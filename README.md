@@ -2,6 +2,12 @@
 
 Um sistema completo de votação para filmes desenvolvido com Next.js 14, TypeScript e PostgreSQL, apresentando uma interface moderna e funcionalidades avançadas de votação e administração.
 
+## 🌐 Demonstração Online
+
+**🔗 Acesse a aplicação:** [https://mostennexttopfilm.vercel.app](https://mostennexttopfilm.vercel.app)
+
+*Teste todas as funcionalidades: cadastre-se, vote nos filmes, ative o modo admin e explore a interface.*
+
 ## 🚀 Características Principais
 
 ### Autenticação e Segurança
@@ -229,13 +235,6 @@ mosten/
 ├── public/               # Arquivos estáticos
 └── ...                   # Configurações (next.config.mjs, etc.)
 ```
-
-### Destaques da Arquitetura:
-- **Server Actions**: Comunicação segura entre cliente e servidor
-- **Middleware personalizado**: Interceptação e validação de requisições
-- **Context API**: Estado global reativo para autenticação
-- **Componentes modulares**: Reutilização e manutenibilidade
-- **Tipagem completa**: TypeScript em toda a aplicação
 
 ## 🚀 Instalação e Configuração
 
